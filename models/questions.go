@@ -67,4 +67,17 @@ func GetAllQuestions() []*Question {
 	return questions
 }
 
+func GetAllUnansweredQuestions() []*Question {
+	questions := make([]*Question, 0)
+	err := GetDB().Table("questions").Joins("left join answers on answers.question_id = questions.id").
+		Where("answers.id IS NULL").Find(&questions).Error
+
+	if err != nil{
+		fmt.Println(err)
+		return nil
+	}
+
+	return questions
+}
+
 

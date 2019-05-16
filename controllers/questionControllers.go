@@ -54,3 +54,11 @@ var FetchAllQuestions = func(w http.ResponseWriter, r *http.Request) {
 	resp["data"] = data
 	u.Response(w, resp)
 }
+
+var FetchAllUnAnsweredQuestions = func(w http.ResponseWriter, r *http.Request) {
+
+	data := models.GetAllUnansweredQuestions()
+	resp := u.Message(true, "succes")
+	resp["data"] = data
+	u.Response(w, resp)
+}

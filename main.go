@@ -15,6 +15,7 @@ func main(){
 	router.HandleFunc("/api/question/post", controllers.PostQuestion).Methods("POST")
 	router.HandleFunc("/api/question/byuser", controllers.FetchQuestionsByUser).Methods("GET")
 	router.HandleFunc("/api/question/all", controllers.FetchAllQuestions).Methods("GET")
+	router.HandleFunc("/api/question/unanswered", controllers.FetchAllUnAnsweredQuestions).Methods("GET")
 
 	router.HandleFunc("/api/answer/post", controllers.PostAnswer).Methods("POST")
 	router.HandleFunc("/api/answer/byuser", controllers.GetAnswerByUserID).Methods("GET")
