@@ -11,19 +11,19 @@ type User struct {
 	Name string `json:"name"`
 }
 
-func (user *User) Validate() (map[string] interface{}, bool){
+func (user *User) Validate() (map[string]interface{}, bool) {
 
-	if user.Name == ""{
+	if user.Name == "" {
 		return u.Message(false, "Name can't be empty"), false
 	}
 
 	temp := &User{}
 	err := GetDB().Table("users").Where("name = ?", user.Name).First(temp).Error
-	if err != nil && err != gorm.ErrRecordNotFound{
+	if err != nil && err != gorm.ErrRecordNotFound {
 		return u.Message(false, "Connection error. Please retry"), false
 	}
 
-	if temp.Name != ""{
+	if temp.Name != "" {
 		return u.Message(false, "Name already taken"), false
 	}
 
@@ -32,7 +32,7 @@ func (user *User) Validate() (map[string] interface{}, bool){
 
 }
 
-func (user *User) Create() map[string] interface{}{
+func (user *User) Create() map[string]interface{} {
 	if res, ok := user.Validate(); !ok {
 		return res
 	}
@@ -54,7 +54,7 @@ func GetUser(u uint) *User {
 
 	user := &User{}
 	GetDB().Table("users").Where("id = ?", u).First(user)
-	if user.Name == ""{
+	if user.Name == "" {
 		return nil
 	}
 

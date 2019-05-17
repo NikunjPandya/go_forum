@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func main(){
+func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/api/user/new", controllers.CreateAccount).Methods("POST")
 
@@ -22,13 +22,13 @@ func main(){
 	router.HandleFunc("/api/answer/byquestion", controllers.FetchAnswersByQuestionID).Methods("GET")
 
 	port := os.Getenv("PORT")
-	if port == ""{
+	if port == "" {
 		port = "8080"
 	}
 
 	fmt.Println(port)
 
-	err := http.ListenAndServe(":" + port, router)
+	err := http.ListenAndServe(":"+port, router)
 
 	if err != nil {
 		fmt.Println(err)

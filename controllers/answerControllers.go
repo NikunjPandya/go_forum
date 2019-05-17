@@ -13,7 +13,7 @@ var PostAnswer = func(w http.ResponseWriter, r *http.Request) {
 	answer := &models.Answers{}
 	err := json.NewDecoder(r.Body).Decode(answer)
 
-	if err != nil{
+	if err != nil {
 		u.Response(w, u.Message(false, "Malformed Request"))
 		return
 	}
@@ -24,9 +24,9 @@ var PostAnswer = func(w http.ResponseWriter, r *http.Request) {
 
 var GetAnswerByUserID = func(w http.ResponseWriter, r *http.Request) {
 	vals := r.URL.Query()
-	user_id_str, ok := vals ["user_id"]
+	user_id_str, ok := vals["user_id"]
 
-	if !ok || len(user_id_str) == 0{
+	if !ok || len(user_id_str) == 0 {
 		fmt.Println("Error", user_id_str)
 		u.Response(w, u.Message(false, "User ID is Missing"))
 		return
@@ -48,7 +48,7 @@ var GetAnswerByUserID = func(w http.ResponseWriter, r *http.Request) {
 
 var FetchAnswersByQuestionID = func(w http.ResponseWriter, r *http.Request) {
 	vals := r.URL.Query()
-	question_id_str, ok := vals ["question_id"]
+	question_id_str, ok := vals["question_id"]
 
 	if !ok || len(question_id_str) == 0 {
 		fmt.Println("Error", question_id_str)
